@@ -44,14 +44,15 @@ Hardening applied:
 
 ## Why
 
-Fedora is one of the few distributions that ships with selinux and associated tooling built-in and enabled by default. This makes it advantageous as a starting point for building a hardened system. However, out of the box it's lacking hardening in numerous other areas. This project's goal is to improve on that significantly.
-
+Fedora is one of the few distributions that ships with SELinux and associated tooling built-in and enabled by default. This makes it advantageous as a starting point for building a hardened system. However, out of the box it's lacking hardening in numerous other areas. This project's goal is to improve on that significantly.
 
 For more info on uBlue and BlueBuild, check out the [uBlue homepage](https://universal-blue.org/) and the [BlueBuild homepage](https://blue-build.org/).
 
 ## Customization
 
 If you want to add your own customizations on top of secureblue, you are advised strongly against forking. Instead, create a repo for your own image by using the [BlueBuild template](https://github.com/blue-build/template), then change your `base-image` to a secureblue image. This will allow you to apply your customizations to secureblue in a concise and maintainable way, without the need to constantly sync with upstream. 
+
+Secureblue includes many configurations, if you want/need to change them, look at the FAQ for the correct way.
 
 ## FAQ
 
@@ -183,33 +184,27 @@ Have a look at [PREINSTALL-README](PREINSTALL-README.md) before proceeding.
 
 ### Rebasing
 
-To rebase an existing Silverblue/Kinoite installation to the latest build:
+To rebase an existing [Fedora Atomic installation](https://fedoraproject.org/atomic-desktops/) to the latest build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/secureblue/$IMAGE_NAME:latest
+  rpm-ostree rebase --reboot ostree-unverified-registry:ghcr.io/secureblue/$IMAGE_NAME:latest
   ```
-- Reboot to complete the rebase:
+- Then rebase to the signed image, (this is very quick but important):
   ```
-  systemctl reboot
+  rpm-ostree rebase --reboot ostree-image-signed:docker://ghcr.io/secureblue/$IMAGE_NAME:latest
   ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/secureblue/$IMAGE_NAME:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
-  
+
 ### Post-install
 
 After installation, [yafti](https://github.com/ublue-os/yafti) will open. Make sure to follow the steps listed carefully and read the directions closely.
 
+If you want to skip a step, swipe instead of pressing a button.
+
 Have a look at [POSTINSTALL-README](POSTINSTALL-README.md).
 
-#### Nvidia
-If you are using an nvidia image, run this after installation:
+#### NVIDIA
+If you are using an NVIDIA image, run this after installation:
 
 ```
 rpm-ostree kargs \

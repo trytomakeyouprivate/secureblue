@@ -138,6 +138,8 @@ There is an [upstream bug](https://discussion.fedoraproject.org/t/gdk-message-er
 mkdir -p ~/.config/environment.d && echo "GSK_RENDERER=gl" >> ~/.config/environment.d/gsk.conf
 ```
 
+This should no longer be required as of F41: https://discussion.fedoraproject.org/t/gdk-message-error-71-protocol-error-dispatching-to-wayland-display/127927/42
+
 #### Why won't `hardened-chromium` start on Nvidia?
 
 On some Nvidia machines, `hardened-chromium` defaults to the X11 backend. Since secureblue disables Xwayland by default, this means that you will need to run `ujust toggle-xwayland` and reboot, for `hardened-chromium` to work.

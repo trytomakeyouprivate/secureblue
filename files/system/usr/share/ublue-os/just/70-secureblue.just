@@ -5,13 +5,13 @@ set-kargs-hardening:
     if [[ "$YES" == [Yy]* ]]; then
         echo "Keeping 32-bit support."
     else
-        IAEMU_NO="--append-if-missing="ia32_emulation=0""
+        IAEMU_NO='--append-if-missing="ia32_emulation=0"'
         echo "Disabling 32-bit support, for the next boot."
     fi
     read -p "Would you like to set additional (unstable) hardening kargs? (Warning: Setting these kargs may lead to boot issues on some hardware.) [y/N]: " YES
     if [[ "$YES" == [Yy]* ]]; then
-    UNSTABLE_YES="--append-if-missing="efi=disable_early_pci_dma" \
-        --append-if-missing="debugfs=off""
+    UNSTABLE_YES='--append-if-missing="efi=disable_early_pci_dma" \
+        --append-if-missing="debugfs=off"'
         echo "Setting unstable hardening kargs."
     else
         echo "Not setting unstable hardening kargs."

@@ -20,6 +20,10 @@ modules:
         - malcontent-ui-libs
         - malcontent-control
         - fedora-chromium-config-gnome
+        - totem-video-thumbnailer
     - type: gschema-overrides
       include:
         - zz1-secureblue.gschema.override
+    - type: script
+      scripts:
+        - removedkmshelper.sh

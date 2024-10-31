@@ -8,10 +8,6 @@ modules:
       - fuse-encfs
       - krfb
       - krfb-libs
-      - plasma-discover
-      - plasma-discover-libs
-      - plasma-discover-notifier
-      - plasma-discover-flatpak
       - plasma-discover-rpm-ostree
       
       # depends on fedora-flathub-remote

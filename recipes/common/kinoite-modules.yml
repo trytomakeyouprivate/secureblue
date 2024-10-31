@@ -9,6 +9,7 @@ modules:
       - krfb
       - krfb-libs
       - plasma-discover
+      - plasma-discover-notifier
       - plasma-discover-rpm-ostree
       
       # depends on fedora-flathub-remote

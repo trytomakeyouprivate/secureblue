@@ -9,6 +9,7 @@ modules:
       - krfb
       - krfb-libs
       - plasma-discover
+      - plasma-discover-libs
       - plasma-discover-notifier
       - plasma-discover-flatpak
       - plasma-discover-rpm-ostree

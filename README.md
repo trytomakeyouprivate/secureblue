@@ -201,6 +201,9 @@ While it's recommended to use a Fedora Atomic ISO to install and then rebase tha
 | `wayblue-sway-nvidia-open-userns-hardened` | Wayblue-Sway       | Yes, open drivers       | Yes                          |
 
 ## Server
+> [!NOTE] 
+> After you finish setting up your [Fedora CoreOS](https://fedoraproject.org/coreos/) installation, you will need to disable `zincati.service` before rebasing to securecore. 
+
 | Name                                      | Base      | Nvidia Support         | ZFS Support | Unpriv. Userns |
 |-------------------------------------------|-----------|-------------------------|-------------|------------------------------|
 | `securecore-main-hardened`               | CoreOS    | No                      | No          | No                           |

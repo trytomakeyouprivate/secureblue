@@ -10,7 +10,7 @@ set-kargs-hardening:
     fi
     read -p "Do you want to force disable Simultaneous Multithreading (SMT) / Hyperthreading? (This can cause a reduction in the performance of certain tasks in favor of security) (Note that in most hardware SMT will be disabled anyways to mitigate a known vulnerability, this turns it off on all hardware regardless) [y/N]: " YES
     if [[ "$YES" == [Yy]* ]]; then
-        NOSMT_YES=--append-if-missing=nosmt=force"
+        NOSMT_YES="--append-if-missing=nosmt=force"
         echo "Force disabling SMT/Hyperthreading."
     else
         echo "Not force disabling SMT/Hyperthreading."

@@ -661,7 +661,7 @@ audit-secureblue:
             fi
             if hasPermission "$permissions" "shared" "ipc"; then
             status="$STATUS_FAILURE"
-                warnings+=("> $f has inter-proccess communications access!")
+                warnings+=("> $f has inter-process communications access!")
             fi
             flatpak_test_string="Auditing $f"
             print_status "$flatpak_test_string" "$status"

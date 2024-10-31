@@ -8,6 +8,9 @@ modules:
       - fuse-encfs
       - krfb
       - krfb-libs
+      - plasma-discover
+      - plasma-discover-rpm-ostree
+      
       # depends on fedora-flathub-remote
       - plasma-welcome-fedora
   - type: files

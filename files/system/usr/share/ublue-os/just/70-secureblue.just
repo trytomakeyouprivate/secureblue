@@ -624,7 +624,8 @@ audit-secureblue:
         declare -A flatpaks
         while read -r ref version; do
             flatpaks+=(["${ref}"]="${ref}//${version}")
-        done <<<$(flatpak list | sort -k 1 | cut --fields 2,4)
+        done < <(flatpak list | sort -k 1 | cut --fields 2,4)
+
         for f in ${!flatpaks[@]}; do
             warnings=()
             status="$STATUS_SUCCESS"

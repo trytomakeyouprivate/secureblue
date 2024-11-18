@@ -678,6 +678,8 @@ audit-secureblue:
                 status="$STATUS_FAILURE"
                 warnings+=("> $f is missing host-os:ro permission,")
                 warnings+=("> which is needed to load hardened_malloc!")
+                warnings+=("> To add it use Flatseal or run:")
+                warnings+=("> 'flatpak override -u --filesystem=host-os:ro $f'")
             fi
             if [[ "$bluetooth_loaded" == "true" ]] && hasPermission "$permissions" "features" "bluetooth"; then
                 status="$STATUS_FAILURE"
@@ -702,6 +704,11 @@ audit-secureblue:
                 warnings+=("> $f has device=all permission,")
                 warnings+=("> granting access to GPU, input devices, raw USB, and virtualization,")
                 warnings+=("> and introducing a vector for sandbox escapes!")
+                warnings+=("> To remove it use Flatseal or run:")
+                warnings+=("> 'flatpak override -u --nodevice=all $f'")
+                warnings+=("> We recommend you enable device=dri to grant GPU access, if needed by the app")
+                warnings+=("> To add GPU access use Flatseal or run:")
+                warnings+=("> 'flatpak override -u --device=dri $f'")
             fi
             flatpak_test_string="Auditing $f"
             print_status "$flatpak_test_string" "$status"

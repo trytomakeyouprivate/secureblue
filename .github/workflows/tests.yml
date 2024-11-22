@@ -8,7 +8,7 @@ on:
   workflow_dispatch: # allow manually triggering 
 jobs:
   run_tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     name: Install Bats and run tests
     steps:
       - name: Checkout repo
@@ -17,10 +17,20 @@ jobs:
       - name: Setup Bats and bats libs
         id: setup-bats
         uses: bats-core/bats-action@2104b40bb7b6c2d5110b23a26b0bf265ab8027db #v3.0.0
+        with:
+           support-path: "${{ github.workspace }}/.bats/bats-support"
+           assert-path: "${{ github.workspace }}/.bats/bats-assert"
+           detik-path: "${{ github.workspace }}/.bats/bats-detik"
+           file-path: "${{ github.workspace }}/.bats/bats-file"
+      
+      - name: Install just
+        run: |          
+          sudo apt-get install just
 
       - name: Run tests
         shell: bash
         env:
           INSTALL_SCRIPT: install/install_secureblue.sh
+          BATS_LIB_PATH: "${{ github.workspace }}/.bats"
         run: |
-          bats -p -t --verbose-run .github/workflows/tests
+          bats --timing --trace --verbose-run -r .github/workflows/tests
